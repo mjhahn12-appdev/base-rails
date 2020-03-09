@@ -16,6 +16,16 @@
   </head>
 
   <body>
+    <% if session[:user_id] == nil %>
+      <a href="/plans">Grab some food!</a>
+      <a href="/user_sign_up">Sign Up</a>
+      <a href="/user_sign_in">Sign In</a>
+    <% else %>
+      <a href="/plans">Grab some food!</a>
+      <a href="/edit_user_profile">Edit Profile</a>
+      <a href="/user_sign_out">Sign Out</a>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

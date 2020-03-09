@@ -1,0 +1,132 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Plan #<%= @plan.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/plans" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_plan/<%= @plan.id %>" class="btn btn-block btn-outline-secondary">
+          Delete plan
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @plan.sender_id %>
+      </dd>
+
+      <dt>
+        Recipient
+      </dt>
+      <dd>
+        <%= @plan.recipient_id %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @plan.status %>
+      </dd>
+
+      <dt>
+        Plan time
+      </dt>
+      <dd>
+        <%= @plan.plan_time %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @plan.location %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@plan.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@plan.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit plan
+    </h2>
+
+    <form action="/modify_plan/<%= @plan.id %>"  method="post" >
+      <div class="form-group">
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control" value="<%= @plan.sender_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="recipient_id_box">
+          Recipient
+        </label>
+
+        <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control" value="<%= @plan.recipient_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" class="form-control" value="<%= @plan.status %>">
+      </div>
+
+      <div class="form-group">
+        <label for="plan_time_box">
+          Plan time
+        </label>
+
+        <input type="datetime-local" id="plan_time_box" name="query_plan_time"
+          class="form-control" value="<%= @plan.plan_time %>">
+      </div>
+
+      <div class="form-group">
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" class="form-control" value="<%= @plan.location %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update plan
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
