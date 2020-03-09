@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  location     :string
 #  plan_time    :datetime
-#  status       :string
+#  status       :boolean
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  recipient_id :integer

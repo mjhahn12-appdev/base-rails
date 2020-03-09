@@ -5,6 +5,7 @@
 #  id              :integer          not null, primary key
 #  email           :string
 #  password_digest :string
+#  phone_number    :string
 #  plans_count     :integer
 #  username        :string
 #  created_at      :datetime         not null
