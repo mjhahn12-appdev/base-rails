@@ -12,6 +12,10 @@ class PlansController < ApplicationController
     render({ :template => "plans/show.html.erb" })
   end
 
+  def makeit
+      render({ :template=> "plans/makeit.html.erb"})
+  end
+
   def create
     @plan = Plan.new
     @plan.sender_id = params.fetch("query_sender_id")

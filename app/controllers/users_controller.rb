@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.plans_count = params.fetch("query_plans_count")
 
     save_status = @user.save
 
@@ -32,7 +31,6 @@ class UsersController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.plans_count = params.fetch("query_plans_count")
     
     if @user.valid?
       @user.save

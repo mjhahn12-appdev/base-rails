@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get("/", {:controller=> "plans", :action=> "index"})
 
   # CREATE
+  get("/make_plan",{ :controller=> "plans", :action => "makeit"})
   post("/insert_plan", { :controller => "plans", :action => "create" })
           
   # READ
