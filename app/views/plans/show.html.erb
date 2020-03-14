@@ -23,21 +23,14 @@
         Sender
       </dt>
       <dd>
-        <%= @plan.sender_id %>
+        <%= @plan.sender_username %>
       </dd>
 
       <dt>
         Recipient
       </dt>
       <dd>
-        <%= @plan.recipient_id %>
-      </dd>
-
-      <dt>
-        Status
-      </dt>
-      <dd>
-        <%= @plan.status %>
+        <%= @plan.recipient_username %>
       </dd>
 
       <dt>
@@ -82,28 +75,6 @@
 
     <form action="/modify_plan/<%= @plan.id %>"  method="post" >
       <div class="form-group">
-        <label for="sender_id_box">
-          Sender
-        </label>
-
-        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control" value="<%= @plan.sender_id %>">
-      </div>
-
-      <div class="form-group">
-        <label for="recipient_id_box">
-          Recipient
-        </label>
-
-        <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control" value="<%= @plan.recipient_id %>">
-      </div>
-
-      <div class="form-group">
-        <label for="status_box">
-          Status
-        </label>
-
-        <input type="text" id="status_box" name="query_status" class="form-control" value="<%= @plan.status %>">
-      </div>
 
       <div class="form-group">
         <label for="plan_time_box">

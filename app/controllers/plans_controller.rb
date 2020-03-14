@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+  def home
+    render({ :template=> "plans/home.html.erb"})
+  end
   def index
     @plans = Plan.all.order({ :created_at => :desc })
 
@@ -18,9 +21,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new
-    @plan.sender_id = params.fetch("query_sender_id")
-    @plan.recipient_id = params.fetch("query_recipient_id")
-    @plan.status = params.fetch("query_status")
+    recipientusername = params.fetch("query_recipient_username")
+    @plan.recipient_id = User.where({ :username => recipientusername })
+    @plan.recipient_number = params.fetch("query_recipient_phonenumber")
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")
 
@@ -35,10 +38,6 @@ class PlansController < ApplicationController
   def update
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
-
-    @plan.sender_id = params.fetch("query_sender_id")
-    @plan.recipient_id = params.fetch("query_recipient_id")
-    @plan.status = params.fetch("query_status")
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")
 
@@ -53,9 +52,17 @@ class PlansController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
-
+    @delete_plan = []
+    @plan.each do |plan|
+    @plan.each do |comparePlan|
+      if plan.status == comparePlan.status && plan.deleted? && comparePlan.deleted && plan.receiver_id != comparePlan.receiver_id
+        @delete_plan.push(plan)
+        redirect_to("/plans", { :notice => "Plan broken successfully."} )
+      else
+        redirect_to("/plans", { :notice => "Plan is still on."})
+      end
     @plan.destroy
-
-    redirect_to("/plans", { :notice => "Plan deleted successfully."} )
+    end
+  end
   end
 end
