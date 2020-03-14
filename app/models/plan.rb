@@ -6,6 +6,8 @@
 #  location         :string
 #  plan_time        :datetime
 #  recipient_number :string
+#  recipient_status :boolean
+#  sender_status    :boolean
 #  status           :boolean
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
@@ -21,4 +23,5 @@ class Plan < ApplicationRecord
   def recipient_username
     return User.where({ :id => recipient_id }).pluck( :username )
   end
+
 end

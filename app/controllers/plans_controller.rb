@@ -52,17 +52,22 @@ class PlansController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
-    @delete_plan = []
+    if session[:user_id] == sender_id
+      @plan.sender_status == false
+    else
+      @plan.recipient_status == false 
+    end
+    @plan.save
+
     @plan.each do |plan|
     @plan.each do |comparePlan|
       if plan.status == comparePlan.status && plan.deleted? && comparePlan.deleted && plan.receiver_id != comparePlan.receiver_id
-        @delete_plan.push(plan)
+        @plan.status == false
         redirect_to("/plans", { :notice => "Plan broken successfully."} )
       else
         redirect_to("/plans", { :notice => "Plan is still on."})
       end
-    @plan.destroy
     end
-  end
+    end
   end
 end
