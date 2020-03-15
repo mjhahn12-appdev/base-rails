@@ -7,10 +7,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new
+    @user.username = params.fetch("query_username")
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.plans_count = params.fetch("query_plans_count")
 
     save_status = @user.save
 
@@ -29,10 +29,10 @@ class UsersController < ApplicationController
 
   def update
     @user = @current_user
+    @user.username = params.fetch("query_username")
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.plans_count = params.fetch("query_plans_count")
     
     if @user.valid?
       @user.save

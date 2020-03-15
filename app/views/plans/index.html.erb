@@ -1,47 +1,22 @@
 <div class="row mb-3">
-  <div class="col-md-12">
-    <h1>
-      List of all plans
-    </h1>
-  </div>
-</div>
-
-<hr>
-
-<div class="row mb-3">
   <div class="col-md-8 offset-md-2">
-    <h2>
-      Add a new plan
-    </h2>
+    <h1>
+      Add a New Plan
+    </h1>
 
     <form action="/insert_plan" method="post">
-      <div class="form-group">
-        <label for="sender_id_box">
-          Sender
-        </label>
-
-        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control">
-      </div>
 
       <div class="form-group">
         <label for="recipient_id_box">
-          Recipient
+          Recipient Username
         </label>
 
         <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control">
       </div>
 
       <div class="form-group">
-        <label for="status_box">
-          Status
-        </label>
-
-        <input type="text" id="status_box" name="query_status" class="form-control">
-      </div>
-
-      <div class="form-group">
         <label for="plan_time_box">
-          Plan time
+          Plan Time
         </label>
 
         <input type="datetime-local" id="plan_time_box" name="query_plan_time" class="form-control">
@@ -56,27 +31,20 @@
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
-        Create plan
+        Make Plan
       </button>
     </form>
   </div>
 </div>
 
 <hr>
+<h1>Your Plans</h1>
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
-          Sender
-        </th>
-
-        <th>
-          Recipient
+          Recipient Username
         </th>
 
         <th>
@@ -84,7 +52,7 @@
         </th>
 
         <th>
-          Plan time
+          Plan Time
         </th>
 
         <th>
@@ -105,16 +73,9 @@
 
       <% @plans.each do |plan| %>
       <tr>
-        <td>
-          <%= plan.id %>
-        </td>
 
         <td>
-          <%= plan.sender_id %>
-        </td>
-
-        <td>
-          <%= plan.recipient_id %>
+          <%= plan.recipient %>
         </td>
 
         <td>

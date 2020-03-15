@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Routes for the Plan resource:
 
-  get("/", {:controller=> "plans", :action=> "index"})
+  get("/", {:controller=> "plans", :action=> "home"})
 
   # CREATE
   post("/insert_plan", { :controller => "plans", :action => "create" })

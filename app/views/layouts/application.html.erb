@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+    <title>Make or Break</title>
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -17,11 +17,12 @@
 
   <body>
     <% if session[:user_id] == nil %>
-      <a href="/plans">Grab some food!</a>
+      <a href="/">Home</a>
       <a href="/user_sign_up">Sign Up</a>
       <a href="/user_sign_in">Sign In</a>
     <% else %>
-      <a href="/plans">Grab some food!</a>
+      <a href="/">Home</a>
+      <a href="/plans">Your Plans</a>
       <a href="/edit_user_profile">Edit Profile</a>
       <a href="/user_sign_out">Sign Out</a>
     <% end %>

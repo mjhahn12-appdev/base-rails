@@ -13,7 +13,7 @@
 
       <div class="col">
         <a href="/delete_plan/<%= @plan.id %>" class="btn btn-block btn-outline-secondary">
-          Delete plan
+          BREAK!
         </a>
       </div>
     </div>
@@ -23,14 +23,14 @@
         Sender
       </dt>
       <dd>
-        <%= @plan.sender_id %>
+        <%= @plan.sender %>
       </dd>
 
       <dt>
         Recipient
       </dt>
       <dd>
-        <%= @plan.recipient_id %>
+        <%= @plan.recipient %>
       </dd>
 
       <dt>
@@ -81,33 +81,18 @@
     </h2>
 
     <form action="/modify_plan/<%= @plan.id %>"  method="post" >
-      <div class="form-group">
-        <label for="sender_id_box">
-          Sender
-        </label>
-
-        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control" value="<%= @plan.sender_id %>">
-      </div>
 
       <div class="form-group">
         <label for="recipient_id_box">
-          Recipient
+          Recipient Username
         </label>
 
         <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control" value="<%= @plan.recipient_id %>">
       </div>
 
       <div class="form-group">
-        <label for="status_box">
-          Status
-        </label>
-
-        <input type="text" id="status_box" name="query_status" class="form-control" value="<%= @plan.status %>">
-      </div>
-
-      <div class="form-group">
         <label for="plan_time_box">
-          Plan time
+          Plan Time
         </label>
 
         <input type="datetime-local" id="plan_time_box" name="query_plan_time"
@@ -123,7 +108,7 @@
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
-        Update plan
+        Update Plan
       </button>
     </form>
   </div>

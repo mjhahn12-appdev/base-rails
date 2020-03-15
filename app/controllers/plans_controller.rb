@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+  def home
+    render({ :template => "plans/home.html.erb"})
+  end
   def index
     @plans = Plan.all.order({ :created_at => :desc })
 
@@ -14,9 +17,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new
-    @plan.sender_id = params.fetch("query_sender_id")
-    @plan.recipient_id = params.fetch("query_recipient_id")
-    @plan.status = params.fetch("query_status")
+    @plan.sender = params.fetch(session[:user_id])
+    @plan.status = "TRUE"
+    @plan.recipient = params.fetch("query_recipient_id")
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")
 
@@ -32,9 +35,9 @@ class PlansController < ApplicationController
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
 
-    @plan.sender_id = params.fetch("query_sender_id")
-    @plan.recipient_id = params.fetch("query_recipient_id")
-    @plan.status = params.fetch("query_status")
+    @plan.sender = params.fetch(session[:user_id])
+    @plan.recipient = params.fetch("query_recipient_id")
+    @plan.status = "TRUE"
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")
 
