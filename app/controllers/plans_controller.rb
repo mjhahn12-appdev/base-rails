@@ -3,9 +3,15 @@ class PlansController < ApplicationController
     render({ :template => "plans/home.html.erb"})
   end
   def index
-    @plans = Plan.all.order({ :created_at => :desc })
+    @plans = Plan.where({ :sender_id => @current_user.id }).order({ :plan_time => :asc })
 
     render({ :template => "plans/index.html.erb" })
+  end
+
+  def invited_plans
+    @plans = Plan.where({ :recipient_id => @current_user.id }).order({ :plan_time => :asc })
+
+    render({ :template => "plans/invited_plans.html.erb" })
   end
 
   def show
@@ -17,9 +23,12 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new
-    @plan.sender = params.fetch(session[:user_id])
+
+    @plan.sender = params["query_sender_id"]
+    @plan.sender_id = User.where({ :username => @plan.sender }).pluck(:id)[0]
     @plan.status = "TRUE"
-    @plan.recipient = params.fetch("query_recipient_id")
+    @plan.recipient = params["query_recipient_id"]
+    @plan.recipient_id = User.where({ :username => @plan.recipient }).pluck(:id)[0]
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")
 
@@ -35,8 +44,10 @@ class PlansController < ApplicationController
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
 
-    @plan.sender = params.fetch(session[:user_id])
-    @plan.recipient = params.fetch("query_recipient_id")
+    sender_username = params["query_sender_id"]
+    @plan.sender_id = User.where({ :username => sender_username }).pluck(:id)[0]
+    recipient_username = params["query_recipient_id"]
+    @plan.recipient_id = User.where({ :username => recipient_username }).pluck(:id)[0]
     @plan.status = "TRUE"
     @plan.plan_time = params.fetch("query_plan_time")
     @plan.location = params.fetch("query_location")

@@ -8,9 +8,9 @@ Rails.application.routes.draw do
           
   # READ
   get("/plans", { :controller => "plans", :action => "index" })
-  
+  get("/invited_plans", {:controller=> "plans", :action=> "invited_plans"})
   get("/plans/:path_id", { :controller => "plans", :action => "show" })
-  
+  get("/invited_plans/:path_id", {:controller=> "plans", :action=> "show"})
   # UPDATE
   
   post("/modify_plan/:path_id", { :controller => "plans", :action => "update" })

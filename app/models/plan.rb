@@ -13,11 +13,15 @@
 #
 
 class Plan < ApplicationRecord
+
+  belongs_to :sender, :class_name => "User"
+  belongs_to :recipient, :class_name => "User"
+
   def recipient
-    return User.where({ :id=> recipient_id}).pluck(:username)
+    return User.where({ :id=> recipient_id}).pluck(:username)[0]
   end
 
   def sender
-    return User.where({ :id => sender_id}).pluck(:username)
+    return User.where({ :id => sender_id}).pluck(:username)[0]
   end
 end

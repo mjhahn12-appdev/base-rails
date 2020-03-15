@@ -23,14 +23,14 @@
         Sender
       </dt>
       <dd>
-        <%= @plan.sender %>
+        <%= @plan.sender.to_s %>
       </dd>
 
       <dt>
         Recipient
       </dt>
       <dd>
-        <%= @plan.recipient %>
+        <%= @plan.recipient.to_s %>
       </dd>
 
       <dt>
@@ -81,13 +81,20 @@
     </h2>
 
     <form action="/modify_plan/<%= @plan.id %>"  method="post" >
+      <div class="form-group">
+        <label for="sender_id_box">
+          Sender Username
+        </label>
+
+        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control" value="<%= @plan.sender.to_s %>">
+      </div>
 
       <div class="form-group">
         <label for="recipient_id_box">
           Recipient Username
         </label>
 
-        <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control" value="<%= @plan.recipient_id %>">
+        <input type="text" id="recipient_id_box" name="query_recipient_id" class="form-control" value="<%= @plan.recipient.to_s %>">
       </div>
 
       <div class="form-group">

@@ -5,6 +5,12 @@
     </h1>
 
     <form action="/insert_plan" method="post">
+      <div class="form-group">
+        <label for="sender_id_box">
+          Sender Username
+        </label>
+        <input type="text" id="sender_id_box" name="query_sender_id" class="form-control" value="<%= @current_user.username %>">
+      </div>
 
       <div class="form-group">
         <label for="recipient_id_box">
@@ -38,11 +44,15 @@
 </div>
 
 <hr>
-<h1>Your Plans</h1>
+<h1>Upcoming Plans You Made</h1>
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
       <tr>
+        <th>
+          Sender Username
+        </th>
+
         <th>
           Recipient Username
         </th>
@@ -73,9 +83,12 @@
 
       <% @plans.each do |plan| %>
       <tr>
+        <td>
+          <%= plan.sender.to_s %>
+        </td>
 
         <td>
-          <%= plan.recipient %>
+          <%= plan.recipient.to_s %>
         </td>
 
         <td>

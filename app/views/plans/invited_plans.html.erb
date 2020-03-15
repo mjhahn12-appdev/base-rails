@@ -1,0 +1,78 @@
+<h1>Upcoming Plans You Were Invited To</h1>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Sender Username
+        </th>
+
+        <th>
+          Recipient Username
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Plan Time
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @plans.each do |plan| %>
+      <tr>
+        <td>
+          <%= plan.sender.to_s %>
+        </td>
+
+        <td>
+          <%= plan.recipient.to_s %>
+        </td>
+
+        <td>
+          <%= plan.status %>
+        </td>
+
+        <td>
+          <%= plan.plan_time %>
+        </td>
+
+        <td>
+          <%= plan.location %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(plan.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(plan.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/plans/<%= plan.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
