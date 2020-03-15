@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new
     @user.username = params.fetch("query_username")
+    puts @user.id
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")

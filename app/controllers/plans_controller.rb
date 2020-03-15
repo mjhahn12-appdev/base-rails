@@ -9,6 +9,7 @@ class PlansController < ApplicationController
   end
 
   def show
+
     the_id = params.fetch("path_id")
     @plan = Plan.where({:id => the_id }).at(0)
 
@@ -16,7 +17,7 @@ class PlansController < ApplicationController
   end
 
   def makeit
-      render({ :template=> "plans/makeit.html.erb"})
+    render({ :template=> "plans/makeit.html.erb"})
   end
 
   def create
@@ -52,7 +53,7 @@ class PlansController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
-    if session[:user_id] == sender_id
+    if session[:user_id] == Plan.sender_id
       @plan.sender_status == false
     else
       @plan.recipient_status == false 
