@@ -63,9 +63,15 @@ class PlansController < ApplicationController
   def destroy
     the_id = params.fetch("path_id")
     @plan = Plan.where({ :id => the_id }).at(0)
-
-    @plan.destroy
-
-    redirect_to("/plans", { :notice => "Plan deleted successfully."} )
+    if @plan.sender_id == @current_user.id
+      return @plan.sender_status == "FALSE"
+    elsif @plan.recipient_id == @current_user.id
+      return @plan.recipient_status == "FALSE"
+    end
+    if @plan.sender_status == "FALSE" && @plan.recipient_status == "FALSE"
+      redirect_to("/plans", { :notice => "Plan deleted successfully."} )
+    else
+      redirect_to("/plans", { :notice => "Plan is still on!"})
+    end
   end
 end
