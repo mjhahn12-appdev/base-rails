@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All Notifications
+    </h1>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Notice
+        </th>
+
+        <th>
+          Person Who Made Plan
+        </th>
+
+        <th>
+          Invited Person
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @notifications.each do |notification| %>
+      <tr>
+
+        <td>
+          <%= notification.notice %>
+        </td>
+
+        <td>
+          <%= notification.sender_id %>
+        </td>
+
+        <td>
+          <%= notification.recipient_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(notification.created_at) %> ago
+        </td>
+
+        <td>
+          <a href="/delete_notification/<%= notification.id %>">
+            Delete Notification
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

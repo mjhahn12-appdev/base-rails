@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  # Routes for the Notification resource:
+          
+  # READ
+  get("/notifications", { :controller => "notifications", :action => "index" })
+      
+  # DELETE
+  get("/delete_notification/:path_id", { :controller => "notifications", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Plan resource:
 
   get("/", {:controller=> "plans", :action=> "home"})
@@ -16,7 +26,7 @@ Rails.application.routes.draw do
   post("/modify_plan/:path_id", { :controller => "plans", :action => "update" })
   
   # DELETE
-  get("/delete_plan/:path_id", { :controller => "plans", :action => "destroy" })
+  get("/delete_plan/:path_id", { :controller => "plans", :action => "destroy"})
 
   #------------------------------
 
