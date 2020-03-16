@@ -4,13 +4,13 @@ class PlansController < ApplicationController
   end
 
   def index
-    @plans = Plan.where({ :sender_id => @current_user.id }).order({ :plan_time => :asc })
+    @plans = Plan.where({ :sender_id => @current_user.id }).order({ :plan_time => :desc })
 
     render({ :template => "plans/index.html.erb" })
   end
 
   def invited_plans
-    @plans = Plan.where({ :recipient_id => @current_user.id }).order({ :plan_time => :asc })
+    @plans = Plan.where({ :recipient_id => @current_user.id }).order({ :plan_time => :desc })
 
     render({ :template => "plans/invited_plans.html.erb" })
   end
@@ -75,19 +75,18 @@ class PlansController < ApplicationController
       end
     end
 
-    if @plan.sender_status == "FALSE" and @plan.recipient_status = "FALSE"
+    if (@plan.sender_status == "FALSE") and (@plan.recipient_status == "FALSE")
       @notification = Notification.new
-      @notification.notice = "Your <%= @plan.plan_time %> plan at <%= @plan.location %> has been cancelled"
+      @notification.notice = "Your plan has been cancelled"
+      #@notification.notice = "Your <%= @plan.plan_time %> plan at <%= @plan.location %> has been cancelled"
       @notification.sender_id = @plan.sender_id
       @notification.recipient_id = @plan.recipient_id
       @notification.save
       
       @plan.destroy
-      flash[:notice] = "Plan deleted successfully."
-      redirect_to("/plans")
+      redirect_to("/plans", {:notice => "Plan is deleted!"})
     else 
-      flash[ :notice] = "Plan is still on!"
-      redirect_to("/plans/#{@plan.id}")
+      redirect_to("/plans/#{@plan.id}", {:notice => "Plan is still on!"})
     end
   end
 end

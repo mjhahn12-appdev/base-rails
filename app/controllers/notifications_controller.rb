@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.all.order({ :created_at => :asc })
+    @notifications = Notification.all.order({ :created_at => :desc })
 
     render({ :template => "notifications/index.html.erb" })
   end
