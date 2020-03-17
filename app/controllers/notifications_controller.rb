@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.all.order({ :created_at => :desc })
+    @notifications = Notification.where({ :sender_id => @current_user.id, :recipient_id => @current_user.id}).order({ :created_at => :desc })
 
     render({ :template => "notifications/index.html.erb" })
   end
