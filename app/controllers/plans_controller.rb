@@ -35,6 +35,15 @@ class PlansController < ApplicationController
 
     if @plan.valid?
       @plan.save
+
+      @notification = Notification.new
+      @notification.plan_time = @plan.plan_time
+      @notification.location = @plan.location
+      @notification.notice = "A plan has been made!"
+      @notification.sender_id = @plan.sender_id
+      @notification.recipient_id = @plan.recipient_id
+      @notification.save
+
       redirect_to("/plans", { :notice => "Plan created successfully." })
     else
       redirect_to("/plans", { :notice => "Plan failed to create successfully." })
@@ -55,6 +64,15 @@ class PlansController < ApplicationController
 
     if @plan.valid?
       @plan.save
+
+      @notification = Notification.new
+      @notification.plan_time = @plan.plan_time
+      @notification.location = @plan.location
+      @notification.notice = "A plan has been updated!"
+      @notification.sender_id = @plan.sender_id
+      @notification.recipient_id = @plan.recipient_id
+      @notification.save
+
       redirect_to("/plans/#{@plan.id}", { :notice => "Plan updated successfully."} )
     else
       redirect_to("/plans/#{@plan.id}", { :alert => "Plan failed to update successfully." })
@@ -77,13 +95,15 @@ class PlansController < ApplicationController
 
     if (@plan.sender_status == false) and (@plan.recipient_status == false)
       @notification = Notification.new
-      @notification.notice = "Your <%= @plan.plan_time %> plan at <%= @plan.location %> has been cancelled."
+      @notification.notice = "A plan has been broken!"
+      @notification.plan_time = @plan.plan_time
+      @notification.location = @plan.location
       @notification.sender_id = @plan.sender_id
       @notification.recipient_id = @plan.recipient_id
       @notification.save
     
       @plan.destroy
-      redirect_to("/plans", {:notice => "Plan is deleted!"})
+      redirect_to("/plans", {:notice => "Plan is broken!"})
     else 
       redirect_to("/plans/#{@plan.id}", {:notice => "Plan is still on!"})
     end
