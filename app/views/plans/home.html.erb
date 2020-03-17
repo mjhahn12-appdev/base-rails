@@ -2,3 +2,39 @@
 <p>We've all been there. You make a plan with someone. When the day comes, you just feel too tired or simply don't want to go. But, it's always awkward to cancel for no reason other than your laziness. Now, with make or break, you can make or break a plan freely. If you're not feeling it, you can simply press BREAK! on the plan. But, it won't truly be cancelled unless both parties decide to break it.</p>
 
 <a href="/sign_up_fom">Sign Up to Start Making Plans!</a>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of All Users
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+
+        <th>
+          Users
+        </th>
+
+      </tr>
+
+      <% @users.each do |user| %>
+      <tr>
+
+        <td>
+          <%= user.username %>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

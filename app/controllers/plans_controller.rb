@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
   def home
+    @users = User.all.order({ :created_at => :desc})
     render({ :template => "plans/home.html.erb"})
   end
 
