@@ -37,8 +37,6 @@
           Created at
         </th>
 
-        <th>
-        </th>
       </tr>
 
       <% @notifications.each do |notification| %>
@@ -68,11 +66,6 @@
           <%= time_ago_in_words(notification.created_at) %> ago
         </td>
 
-        <td>
-          <a href="/delete_notification/<%= notification.id %>">
-            Delete Notification
-          </a>
-        </td>
       </tr>
       <% end %>
     </table>
